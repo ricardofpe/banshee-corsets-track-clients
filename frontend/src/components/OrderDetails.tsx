@@ -46,7 +46,7 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ order, isLoading, showMessa
 
 
     return (
-        <div className="bg-white shadow-md rounded-lg p-4 md:p-6 flex flex-col gap-4 z-50">
+        <div className="bg-white shadow-md rounded-lg p-4 md:p-6 flex flex-col gap-4 z-50 mt-6">
             <div className="flex items-center space-x-3 border-b pb-3 border-gray-200">
                 <FaBoxOpen className="text-xl text-gray-500" />
                 <h2 className="text-lg font-semibold text-gray-800">Detalhes do Pedido</h2>

@@ -1,7 +1,7 @@
 import CryptoJS from 'crypto-js';
 import type { IOrder } from '../types/order';
 
-const API_BASE_URL = 'https://banshee-corsets-track.onrender.com';
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 const SECRET_KEY = import.meta.env.VITE_SECRET_KEY;
 
 if (!SECRET_KEY) {

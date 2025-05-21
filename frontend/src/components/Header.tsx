@@ -6,7 +6,7 @@ const Header: React.FC = () => {
   return (
     <header className="bg-white shadow-md">
       <div className="bg-blue-500 text-white py-1 text-sm">
-        <div className="container mx-auto flex items-center justify-end">
+        <div className="container mx-auto flex items-center justify-end px-4">
           <a href="https://www.bansheecorsets.com.br" target="_blank" rel="noopener noreferrer" className="hover:underline flex items-center font-bold">
             <FaGlobe className="mr-1" />
             www.bansheecorsets.com.br
