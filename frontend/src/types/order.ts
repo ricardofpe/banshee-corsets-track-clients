@@ -7,4 +7,5 @@ export interface IOrder {
   trackingNumber?: string;
   trackingLink?: string;
   productName: string;
+  queuePosition?: number | null;
 }

@@ -22,12 +22,21 @@ function App() {
     setShowWhatsAppMessage(false); 
 
     try {
+      console.log('🔍 Buscando pedido:', orderNumber);
       const data = await getOrder(orderNumber);
+      console.log('📦 Dados do pedido recebidos:', data);
+      console.log('📋 Posição na fila:', data.queuePosition);
+      console.log('📊 Status do pedido:', data.status);
+      console.log('🔢 Tipo de queuePosition:', typeof data.queuePosition);
+      console.log('❓ queuePosition é null?', data.queuePosition === null);
+      console.log('❓ queuePosition é undefined?', data.queuePosition === undefined);
+      console.log('📝 Todas as chaves do objeto:', Object.keys(data));
       setOrder(data);
       setError(null);
       setShowMessage(false);
       setShowWhatsAppMessage(false);
     } catch (e: any) {
+      console.error('❌ Erro ao buscar pedido:', e);
       setOrder(null);
       setError(e.message || 'Erro ao buscar pedido.');
       setShowMessage(true);

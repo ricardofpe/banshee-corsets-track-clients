@@ -67,19 +67,18 @@ const makeHmacRequest = async (url: string, method: string, data: any = null): P
 };
 
 const getOrder = async (orderNumber: string): Promise<IOrder & { clientName: string }> => {
+    console.log('🌐 Fazendo requisição para:', `${API_BASE_URL}/orders/${orderNumber}`);
     const order = await makeHmacRequest(`${API_BASE_URL}/orders/${orderNumber}`, 'GET', {});
+    console.log('📥 Resposta da API recebida:', order);
+    console.log('📋 queuePosition na resposta:', order.queuePosition);
+    console.log('👤 Cliente na resposta:', order.client);
    
-    const clientId = order.client._id;
-    if (!clientId) {
-        return { ...order, clientName: 'Cliente não encontrado' };
-    }
-    try {
-        const client = await getClient(clientId);
-        return { ...order, clientName: client.name };
-    } catch (error) {
-        console.error("Erro ao buscar o nome do cliente:", error);
-        return { ...order, clientName: 'Nome do cliente não disponível' };
-    }
+    // O backend já retorna o cliente populado, então pegamos o nome diretamente
+    const clientName = order.client?.name || 'Cliente não encontrado';
+    
+    const finalOrder = { ...order, clientName };
+    console.log('📦 Pedido final com cliente:', finalOrder);
+    return finalOrder;
 };
 
 const getClient = async (clientId: string): Promise<{ name: string }> => {

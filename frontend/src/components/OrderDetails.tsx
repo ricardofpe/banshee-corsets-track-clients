@@ -73,7 +73,20 @@ const OrderDetails: React.FC<OrderDetailsProps> = ({ order, isLoading, showMessa
                         <strong className="font-medium text-gray-700">Data limite:</strong> {completionDate.toLocaleDateString()}
                     </p>
                 </div>
-              
+                {order.queuePosition !== null && order.queuePosition !== undefined && order.status === 'em confeccao' && (
+                    <div className="md:col-span-2">
+                        <div className="bg-gradient-to-r from-purple-50 to-blue-50 p-4 rounded-lg border border-purple-200">
+                            <p className="text-sm text-gray-700 flex items-center gap-2">
+                                <span className="text-2xl">📋</span>
+                                <span>
+                                    <strong className="font-semibold text-purple-700">Posição na fila:</strong>{' '}
+                                    <span className="text-lg font-bold text-purple-600">{order.queuePosition}º</span>
+                                    <span className="text-gray-600 ml-2">na ordem de confecção</span>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                )}
             </div>
 
 
