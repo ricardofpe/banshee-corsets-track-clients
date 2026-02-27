@@ -81,9 +81,4 @@ const getOrder = async (orderNumber: string): Promise<IOrder & { clientName: str
     return finalOrder;
 };
 
-const getClient = async (clientId: string): Promise<{ name: string }> => {
-    return makeHmacRequest(`${API_BASE_URL}/clients/${clientId}`, 'GET', {});
-};
-
-
 export { getOrder };
