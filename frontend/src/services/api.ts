@@ -43,15 +43,20 @@ const makeHmacRequest = async (url: string, method: string, data: any = null): P
             }
         }
 
-        const response = await fetch(modifiedUrl, {
-            method,
-            headers,
-            body: method === 'GET' ? null : body,
-        });
+        let response: Response;
+        try {
+            response = await fetch(modifiedUrl, {
+                method,
+                headers,
+                body: method === 'GET' ? null : body,
+            });
+        } catch {
+            throw new Error('Sistema indisponível no momento. Tente novamente mais tarde.');
+        }
 
         if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.message || `Request failed: ${response.statusText}`);
+            const errorData = await response.json().catch(() => ({}));
+            throw new Error(errorData.message || 'Sistema indisponível no momento. Tente novamente mais tarde.');
         }
 
         if (response.status !== 204) {
